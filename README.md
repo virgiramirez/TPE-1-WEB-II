@@ -5,7 +5,7 @@
 - Quiroga Paula
 
 # Descripcion
-Hacemos una base de datos que guarda el contenido de un vivero para la creacion de un e-commerce.
+Con el objetivo de crear un sistema de e-commerce para un Vivero, desarrollamos una base de datos que almacena informacion sobre Plantas, Categorias, Clientes y Pedidos.
 
 # Der
 
