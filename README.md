@@ -8,4 +8,5 @@
 Hacemos una base de datos que guarda el contenido de un vivero para la creacion de un e-commerce.
 
 # Der
--------------aca tabla---------------
+
+![Diagrama Entidad Relacion](/diagrama-vivero.png)
