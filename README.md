@@ -9,4 +9,4 @@ Con el objetivo de crear un sistema de e-commerce para un Vivero, desarrollamos 
 
 # Der
 
-![Diagrama Entidad Relacion](/diagrama-vivero.png)
+![Diagrama Entidad Relacion](/DER.png)
