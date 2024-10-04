@@ -5,7 +5,7 @@
 - Quiroga Paula
 
 # Descripcion
-Con el objetivo de crear un sistema de e-commerce para un Vivero, desarrollamos una base de datos que almacena informacion sobre Plantas, Categorias, Clientes y Pedidos.
+Con el objetivo de crear un sistema de e-commerce para un Vivero, desarrollamos una base de datos que almacena informacion sobre Pedidos y Planta.
 
 # Der
 
