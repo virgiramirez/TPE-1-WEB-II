@@ -1,8 +1,12 @@
 <?php
+require_once './app/controllers/item.controller.php';
+require_once './app/models/item.model.php';
+require_once './app/views/item.view.php';
+require_once './templates/plant.detail.phtml';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
-$action = 'list'; // accion por defecto
+$action = 'plants'; // accion por defecto
 if (!empty($_GET['action'])){
     $action = $_GET['action'];
 }
@@ -23,19 +27,22 @@ if (!empty($_GET['action'])){
         // editar items -> a.controller -> editPlants($id);
         // editar category -> a.controller -> editCategory(); 
 
-
-    
 // CLASS VIEW -> c.view.php 
 // ver items/:ID -> a.controller-> viewPlants($id); 
 // ver items por categoria/:ID --> a.controller--> viewCategory();
 
-
-
-
-
 $params = explode ('/', $action);
 
 switch($params[0]){
-    case 'list':
-
+    case 'plants':
+        $controller = new GardenController();
+        $controller->showPlants();
+        break;
+    case 'plant':
+            $controller = new GardenController();
+            $controller->showPlant($params[1]); 
+        break;
+    case 'error':
+        echo 'La pagina no se ve';
+        break;
 }

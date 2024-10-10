@@ -1,5 +1,4 @@
 <?php
-
     class GardenModel {
 
         private $db;
@@ -20,12 +19,12 @@
         }
 
         public function getPlant($id) {    
-            $query = $this->db->prepare('SELECT * FROM planta WHERE id = ?');
+            $query = $this->db->prepare('SELECT * FROM planta WHERE id_planta = ?');
             $query->execute([$id]);   
         
-            $plants = $query->fetch(PDO::FETCH_OBJ);
+            $plant = $query->fetch(PDO::FETCH_OBJ);
         
-            return $plants;
+            return $plant;
         }
 
         public function insertPlant($nombre, $precio, $pedido, $stock = false) { 

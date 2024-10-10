@@ -19,6 +19,20 @@
             $this->view->showPlants($plants);
         }
 
+        public function showPlant($id){
+            // obtengo la planta por id
+            $plant = $this->model->getPlant($id);
+
+            // mando los detalles de la planta a la vista 
+            if($plant) {   
+                $this->view->showPlant($plant);
+            }
+            else{
+                $this->view->showError("Error");
+            }
+        
+        }
+
         public function addPlants(){
             if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {
                return $this->view->showError('Falta completar el nombre de la planta');

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantas</title>
+</head>
+<body>
+    <h1>Detalles de la Planta</h1>
+    <h2><?php echo $plant->nombre; ?></h2>
+    <p><strong>Precio:</strong> $<?php echo $plant->precio; ?></p>
+    <p><strong>Stock:</strong> <?php echo $plant->stock ? 'Disponible' : 'Agotado'; ?></p>
+    <p><strong>ID de Pedido:</strong> <?php echo $plant->id_pedido; ?></p>
+
+    <a href="router.php">Volver a la lista de plantas</a> <!-- Un enlace para volver a la lista -->
+</body>
+</html>
