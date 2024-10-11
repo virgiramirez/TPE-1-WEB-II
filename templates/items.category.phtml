@@ -1,0 +1,12 @@
+
+<h1>Plantas en la Categoría</h1>
+
+<?php if (empty($items)): ?>
+    <p>No hay ítems disponibles en esta categoría.</p>
+<?php else: ?>
+    <ul>
+        <?php foreach ($items as $item): ?>
+            <li><?php echo $item->nombre; ?> - Precio: <?php echo $item->precio; ?> - Stock: <?php echo $item->stock; ?></li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>

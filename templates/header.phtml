@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<ul class="navbar-nav">
+     <?php foreach($categories as $category): ?>
+        <li>
+                
+             <a href="category/<?php echo $category->id_pedido;?>">
+             - fecha: 
+             <?php echo $category->fecha_pedido; ?>
+            <?php echo $category->estado; ?>
+            <?php echo $category->total; ?>
+            </a>
+        </li>
+    <?php endforeach; ?>
+</ul>
+   
+</html>
