@@ -26,5 +26,19 @@
         
             return $items;
         }
+
+        public function insertCategories($fecha_pedido, $estado, $total) {
+            $query = $this->db->prepare('INSERT INTO pedidos (fecha_pedido, estado, total) VALUES (?, ?, ?)');
+            $query->execute([$fecha_pedido, $estado, $total]);
+
+            $id = $this->db->lastInsertId();
+
+            return $id;
+        }
+
+        public function eraseCategory($id) {
+            $query = $this->db->prepare('DELETE FROM pedidos  WHERE id = ?');
+            $query->execute([$id]);
+        }
         
     }
