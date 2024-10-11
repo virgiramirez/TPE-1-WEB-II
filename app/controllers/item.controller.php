@@ -28,46 +28,46 @@
                 $this->view->showPlant($plant);
             }
             else{
-                $this->view->showError("Error");
+                echo "error"; //$this->view->showError("Error");
             }
         
         }
 
-        public function addPlants(){
-            if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {
-               return $this->view->showError('Falta completar el nombre de la planta');
-            }
+        // public function addPlants(){
+        //     if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {
+        //        return $this->view->showError('Falta completar el nombre de la planta');
+        //     }
 
-            if (!isset($_POST['precio']) || empty($_POST['precio'])) {
-                return $this->view->showError('Falta completar el precio de la planta');
-             }
+        //     if (!isset($_POST['precio']) || empty($_POST['precio'])) {
+        //         return $this->view->showError('Falta completar el precio de la planta');
+        //      }
 
-             if (!isset($_POST['pedido']) || empty($_POST['pedido'])) {
-                return $this->view->showError('Falta completar el numero de pedido');
-             }
+        //      if (!isset($_POST['pedido']) || empty($_POST['pedido'])) {
+        //         return $this->view->showError('Falta completar el numero de pedido');
+        //      }
 
-             if (!isset($_POST['stock']) || empty($_POST['stock'])) {
-                return $this->view->showError('Falta completar el stock de la planta');
-             }
+        //      if (!isset($_POST['stock']) || empty($_POST['stock'])) {
+        //         return $this->view->showError('Falta completar el stock de la planta');
+        //      }
 
-            $nombre = $_POST['nombre'];
-            $precio = $_POST['precio'];
-            $pedido = $_POST['pedido'];
-            $stock = $_POST['stock'];
+        //     $nombre = $_POST['nombre'];
+        //     $precio = $_POST['precio'];
+        //     $pedido = $_POST['pedido'];
+        //     $stock = $_POST['stock'];
 
-            $id = $this->model->insertPlant($nombre, $precio, $pedido, $stock);
-        }
+        //     $id = $this->model->insertPlant($nombre, $precio, $pedido, $stock);
+        // }
 
-        public function deletePlants($id) {
-            // obtengo la planta por id
-            $plants = $this->model->getPlants($id);
+    //     public function deletePlants($id) {
+    //         // obtengo la planta por id
+    //         $plants = $this->model->getPlants($id);
     
-            if (!$plants) {
-                return $this->view->showError("No existe la planta con el id=$id");
-            }
+    //         if (!$plants) {
+    //             return $this->view->showError("No existe la planta con el id=$id");
+    //         }
 
-            // borro la planta y redirijo
-            $this->model->erasePlant($id);
-        }
+    //         // borro la planta y redirijo
+    //         $this->model->erasePlant($id);
+    //     }
     
     }

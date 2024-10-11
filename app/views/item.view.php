@@ -13,11 +13,11 @@ class GardenView {
     }
 
     public function showPlant($plant){
-        require './templates/plant.detail.phtml';
+        require 'templates/plant.detail.phtml';
 
     }
 
-    public function showError($error) {
-        require 'templates/error.phtml';
-    }
+    //public function showError($error) {
+        //require 'templates/error.phtml';
+    //}
 }

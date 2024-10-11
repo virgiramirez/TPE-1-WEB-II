@@ -10,7 +10,7 @@
     <ul>
         <?php foreach ($plants as $plant): ?>
         <li>
-            <a href="../router.php?action=plants&id=<?php echo $plant->id_planta; ?>">
+            <a href="plant/<?php echo $plant->id_planta; ?>">
                 <?php echo $plant->nombre; ?></li>
             </a> - Precio: <?php echo $plant->precio; ?>
         </li>

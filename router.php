@@ -2,7 +2,6 @@
 require_once './app/controllers/item.controller.php';
 require_once './app/models/item.model.php';
 require_once './app/views/item.view.php';
-require_once './templates/plant.detail.phtml';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -39,8 +38,11 @@ switch($params[0]){
         $controller->showPlants();
         break;
     case 'plant':
+        if (!empty($params[1])) {
+            $id = $params[1];
             $controller = new GardenController();
-            $controller->showPlant($params[1]); 
+            $controller->showPlant($id); 
+        }
         break;
     case 'error':
         echo 'La pagina no se ve';
