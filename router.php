@@ -44,7 +44,32 @@ switch($params[0]){
             $controller->showPlant($id); 
         }
         break;
+    case 'addForm':
+        $controller = new GardenController();
+        $controller->showAddForm();
+        break;
+    case 'addPlants':
+        $controller =  new GardenController();
+        $controller->addPlants();
+        break;
+    case 'deletePlant':
+        if (isset($params[1])){
+            $id = $params[1];
+            $controller = new GardenController();
+            $controller->deletePlant($id);
+        }
+    case 'updateForm':
+        if (isset($params[1])){
+            $id = $params[1];
+            $controller = new GardenController();
+            $controller->showUpdateForm($id);
+        }
+        break;
+    case 'updatePlant':
+        $controller = new GardenController();
+        $controller->updatePlant();
+        break;
     case 'error':
         echo 'La pagina no se ve';
-        break;
+        break;  
 }
