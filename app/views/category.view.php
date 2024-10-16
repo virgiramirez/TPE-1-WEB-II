@@ -8,6 +8,9 @@
         public function renderItemsByCategory($items) {
             require './templates/items.category.phtml';
         }
+        public function renderCategory($category){
+            require './templates/form.updateCategory.phtml';
+        }
         public function showError($error) {
             require 'templates/error.phtml';
         }

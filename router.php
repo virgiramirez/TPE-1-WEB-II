@@ -52,8 +52,15 @@ switch($params[0]){
         $controller = new CategoryController;
         $controller->deleteCategory($params[1]);
         break;
-
-   
+    case 'updateCategory':
+            $controller = new CategoryController;
+            $controller->updateCategory();
+        break;
+    case 'showUpdateCategory': 
+        if(isset($params[1])){
+            $controller = new CategoryController;
+            $controller->showUpdateCategory($params[1]);
+        }
         default: 
             echo "404 Page Not Found";
             break;

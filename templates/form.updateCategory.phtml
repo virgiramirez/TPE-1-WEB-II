@@ -1,0 +1,32 @@
+<!-- formulario de edicion de categorias -->
+<form action="<?=BASE_URL?>updateCategory" method="POST" class="my-4">
+    <div class="row">
+    <div class="col-9">
+            <div class="form-group">
+                <label>ID</label>
+                <input  required name="id_pedido" value="<?=$category->id_pedido?>" type="hidden" class="form-control">
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="form-group">
+                <label>Fecha Pedido</label>
+                <input required name="fecha_pedido" value="<?=$category->fecha_pedido?>" type="date" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="form-group">
+                <label>Estado</label>
+                <input required name="estado" value="<?=$category->estado?>" type="text" class="form-control">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Total</label>
+        <input type="number" name="total" value="<?=$category->total?>" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Agregar</button>
+    
+</form>

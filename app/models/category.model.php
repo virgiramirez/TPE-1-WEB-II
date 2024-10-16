@@ -18,6 +18,13 @@
         
             return $categories;
         }
+        public function getCategory($id) {
+            $query = $this->db->prepare('SELECT * FROM pedidos WHERE id_pedido = ?');
+            $query->execute([$id]);
+            $category = $query->fetch(PDO::FETCH_OBJ); 
+            var_dump($category);
+            return $category;
+        }
         public function getItemsByCategory($id) {
             $query = $this->db->prepare('SELECT * FROM planta WHERE id_pedido = ?');
             $query->execute([$id]);   
@@ -37,8 +44,16 @@
         }
 
         public function eraseCategory($id) {
-            $query = $this->db->prepare('DELETE FROM pedidos  WHERE id = ?');
+           if($this->getItemsByCategory($id) != null) {
+                $queryPlant = $this->db->prepare('DELETE FROM planta  WHERE id_pedido = ?');
+                $queryPlant->execute([$id]);
+           }
+            $query = $this->db->prepare('DELETE FROM pedidos  WHERE id_pedido = ?');
             $query->execute([$id]);
+        }
+        public function editCategory($id, $fecha_pedido, $estado, $total){
+            $query = $this->db->prepare('UPDATE pedidos SET fecha_pedido = ?, estado = ?, total = ? WHERE id_pedido = ?');
+            $query->execute([$fecha_pedido, $estado, $total, $id]);
         }
         
     }
