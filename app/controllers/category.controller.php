@@ -13,7 +13,7 @@ require_once './app/views/category.view.php';
         
         public function showCategories() {
             $categories = $this->model->getCategories();
-            var_dump($categories);
+            // var_dump($categories);
             return $this->view->showCategories($categories);
         }       
         public function showItemsByCategory($idPedido){
@@ -51,7 +51,19 @@ require_once './app/views/category.view.php';
             
             header('Location: ' . BASE_URL);
         }
+        
+        public function showUpdateCategory($id) {
+            $items = $this->model->getItemsByCategory($id);
+            $category = $this->model->getCategory($id);
+           
+            if(!$category) {
+                return  $this->view->showError("No existe la categoria con el id=$id");
+            }
+            return $this->view->renderCategory($category, $items);
+            
+        }
         public function updateCategory(){
+            // var_dump($_POST);
             if(!isset($_POST['fecha_pedido']) || empty($_POST['fecha_pedido'])){
                 return $this->view->showError('Falta ingresar la fecha del pedido');
             }
@@ -67,13 +79,6 @@ require_once './app/views/category.view.php';
             $total = $_POST['total'];
             $id_pedido = $this->model->editCategory($id_pedido, $fecha_pedido, $estado, $total);
             header('Location: ' . BASE_URL);
-        }
-        public function showUpdateCategory($id) {
-            $category = $this->model->getCategory($id);
-            var_dump($category);
-            if(!$category) {
-                return  $this->view->showError("No existe la categoria con el id=$id");
-            }
-            return $this->view->renderCategory($category);
+            
         }
     }   

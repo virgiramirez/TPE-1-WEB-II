@@ -61,6 +61,7 @@ switch($params[0]){
             $controller = new CategoryController;
             $controller->showUpdateCategory($params[1]);
         }
+        break;
         default: 
             echo "404 Page Not Found";
             break;
