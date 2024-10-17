@@ -1,0 +1,29 @@
+<?php require_once './templates/layout/header.phtml' ?>
+
+<h1 class="text-center">Home</h1>
+<div class="container mt-4">
+    <div class="row">
+        <?php foreach ($plants as $plant): ?>
+            <div class="col-md-4 mb-4"> <!-- Cada card ocupará 4 columnas en pantallas medianas y grandes -->
+                <div class="card">
+                    <img src="<?= $plant->imagen; ?>" class="card-img-top img-fluid img-custom"  alt="Imagen de <?= $plant->nombre; ?>">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $plant->nombre; ?></h5>
+                        <?php if (isset($_SESSION['id'])): ?> <!-- Verifica si el usuario está logueado -->
+                            <a href="<?= BASE_URL . 'deletePlant/' . $plant->id_planta ?>" type="button" class="btn btn-danger">Borrar</a>
+                            <a href="<?= BASE_URL . 'updatePlant/' . $plant->id_planta ?>" type="button" class="btn btn-warning">Editar</a>
+                        <?php endif; ?>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit..</p>
+                        <a href="plant/<?=$plant->id_planta;?>" class="btn btn-primary">Ver</a>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>  
+</div>
+<!-- Mostrar el botón de agregar planta solo si el usuario está logueado -->
+<?php if (isset($_SESSION['id'])): ?>
+    <a href="<?= BASE_URL; ?>addPlant" class="btn btn-success mt-4">Agregar una planta</a>
+<?php endif ?>
+
+<?php require './templates/layout/footer.phtml' ?>
