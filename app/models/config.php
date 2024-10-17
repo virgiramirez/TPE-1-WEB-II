@@ -3,4 +3,3 @@
     const MYSQL_PASS = '';
     const MYSQL_DB = 'vivero';
     const MYSQL_HOST = 'localhost';
-  
