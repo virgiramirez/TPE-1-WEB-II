@@ -14,13 +14,17 @@
             <a href="plant/<?php echo $plant->id_planta; ?>">
                 <?php echo $plant->nombre; ?></li>
             </a> - Precio: <?php echo $plant->precio; ?>
-            <a href="<?= BASE_URL . 'deletePlant/' . $plant->id_planta ?>" type="button">Borrar</a>
-            <a href="<?= BASE_URL . 'updateForm/' . $plant->id_planta ?>" type="button">Editar</a>
-            
+            <?php if (isset($_SESSION['id'])): ?> <!-- Verifica si el usuario está logueado -->
+                <a href="<?= BASE_URL . 'deletePlant/' . $plant->id_planta ?>" type="button">Borrar</a>
+                <a href="<?= BASE_URL . 'updateForm/' . $plant->id_planta ?>" type="button">Editar</a>
+            <?php endif; ?>
         </li>
         <?php endforeach; ?>
     </ul>
-    <a href="<?php echo BASE_URL; ?>addForm">Agregar una planta</a>
+    <!-- Mostrar el botón de agregar planta solo si el usuario está logueado -->
+    <?php if (isset($_SESSION['id'])): ?>
+        <a href="<?php echo BASE_URL; ?>addForm">Agregar una planta</a>
+    <?php endif; ?>
 </body>
 </html>
 <?php require './templates/layout/footer.phtml'?>

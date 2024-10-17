@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Editar Planta</title>
 </head>
 <body>
     <form action="<?= BASE_URL ?>updatePlant" method="POST">
@@ -20,8 +20,8 @@
 
         <label for="id_pedido">Pedido al que pertenece:</label>
         <select id="id_pedido" name="id_pedido">
-            <?php foreach ($orders as $order): ?>
-                <option value="<?= $order->id_pedido; ?>"><?php echo $order->id_pedido; ?></option>
+            <?php foreach ($pedidos as $pedido): ?>
+                <option value="<?= $pedido->id_pedido; ?>"><?= $pedido->estado; ?></option>
             <?php endforeach; ?>
         </select>
         <button type="submit">Editar Planta</button>

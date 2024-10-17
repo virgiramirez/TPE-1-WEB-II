@@ -1,10 +1,16 @@
 <?php
+    require_once './app/models/config.php';
+    
     class GardenModel {
 
-        private $db;
+        protected $db;
 
         public function __construct(){
-            $this->db = new PDO('mysql:host=localhost;dbname=vivero;charset=utf8', 'root', '');
+            $this->db = new PDO(
+            'mysql:host='.MYSQL_HOST.
+            ';dbname='.MYSQL_DB.
+            ';charset=utf8', 
+            MYSQL_USER, MYSQL_PASS);
         }
         
         public function getPlants() {
@@ -36,13 +42,13 @@
             return $id;
         }
 
-        public function getOrders() {
-            $query = $this->db->prepare('SELECT id_pedido, estado FROM pedidos');
-            $query->execute();
+        public function getOrders($id) {
+            $query = $this->db->prepare('SELECT * FROM pedidos WHERE id_pedido = ?');
+            $query->execute([$id]);
             
-            $orders = $query->fetchAll(PDO::FETCH_OBJ);
-        
-            return $orders;
+            $pedidos = $query->fetch(PDO::FETCH_OBJ);
+            
+            return $pedidos;
         }
 
         public function deletePlant($id) {

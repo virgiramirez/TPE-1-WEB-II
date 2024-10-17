@@ -12,16 +12,16 @@ class GardenView {
         require './templates/plants.list.phtml';
     }
 
-    public function showPlant($plant){
+    public function showPlant($plant, $pedido){
         require 'templates/plant.detail.phtml';
 
     }
 
-    public function showAddForm($orders){
+    public function showAddForm($pedidos){
         require 'templates/form.new.phtml';
     }
 
-    public function showUpdateForm($plant, $orders){
+    public function showUpdateForm($plant, $pedidos){
         require 'templates/form.update.phtml';
     }
 

@@ -7,10 +7,10 @@
 </head>
 <body>
     <h1>Detalles de la Planta</h1>
-    <h2><?php echo $plant->nombre; ?></h2>
-    <p><strong>Precio:</strong> $<?php echo $plant->precio; ?></p>
-    <p><strong>Stock:</strong> <?php echo $plant->stock ? 'Disponible' : 'Agotado'; ?></p>
-    <p><strong>ID de Pedido:</strong> <?php echo $plant->id_pedido; ?></p>
+    <h2><?=$plant->nombre ?></h2>
+    <p>Precio: <?= $plant->precio ?></p>
+    <p>Stock: <?= $plant->stock ?>
+    <p>Pedido: <?= $pedido->estado?></p>  
 
     <a href="<?php echo BASE_URL; ?>plants">Volver a la lista de plantas</a> <!-- Un enlace para volver a la lista -->
 </body>

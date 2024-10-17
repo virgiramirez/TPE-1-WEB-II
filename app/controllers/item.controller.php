@@ -23,11 +23,11 @@
             // obtengo la planta por id
             $plant = $this->model->getPlant($id);
 
-            // mando los detalles de la planta a la vista 
-            if($plant) {   
-                $this->view->showPlant($plant);
+            if($plant) {  
+                $pedido = $this->model->getOrders($plant->id_pedido); // obtengo el pedido asociado
+                $this->view->showPlant($plant, $pedido);
             }
-            else{
+            else {
             $this->view->showError("Error");
             }
         
@@ -57,16 +57,16 @@
 
             $id = $this->model->insertPlant($nombre, $precio, $pedido, $stock);
 
-            // agrego y redirijo al home
+            // redirijo al home
             header('Location: '. BASE_URL  . 'plants');
         }
 
-        public function showAddForm(){
+        public function showAddForm($id){
             // obtiene los pedidos desde el modelo
-            $orders = $this->model->getOrders();
+            $pedidos = $this->model->getOrders($id);
 
             // pasa los pedidos a la vista
-            $this->view->showAddForm($orders);
+            $this->view->showAddForm($pedidos);
         }
 
         public function deletePlant($id) {
@@ -84,7 +84,7 @@
 
         public function showUpdateForm($id) {
             // obtengo la planta por id
-            $orders = $this->model->getOrders();
+            $orders = $this->model->getOrders($id);
             $plant = $this->model->getPlant($id);
     
             if (!$plant) {

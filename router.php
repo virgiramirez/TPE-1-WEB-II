@@ -1,9 +1,15 @@
 <?php
+require_once './libs/response.php';
+require_once './app/middlewares/session.auth.middleware.php';
+require_once './app/middlewares/verify.auth.middleware.php';
 require_once './app/controllers/item.controller.php';
 require_once './app/models/item.model.php';
 require_once './app/views/item.view.php';
+require_once './app/controllers/auth.controller.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
+
+$res = new Response();
 
 $action = 'plants'; // accion por defecto
 if (!empty($_GET['action'])){
@@ -34,41 +40,60 @@ $params = explode ('/', $action);
 
 switch($params[0]){
     case 'plants':
-        $controller = new GardenController();
+        sessionAuthMiddleware($res);
+        $controller = new GardenController($res);
         $controller->showPlants();
         break;
     case 'plant':
+        sessionAuthMiddleware($res);
         if (!empty($params[1])) {
             $id = $params[1];
-            $controller = new GardenController();
+            $controller = new GardenController($res);
             $controller->showPlant($id); 
         }
         break;
     case 'addForm':
-        $controller = new GardenController();
+        $controller = new GardenController($res);
         $controller->showAddForm();
         break;
     case 'addPlants':
-        $controller =  new GardenController();
+        sessionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        $controller =  new GardenController($res);
         $controller->addPlants();
         break;
     case 'deletePlant':
+        sessionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
         if (isset($params[1])){
             $id = $params[1];
-            $controller = new GardenController();
+            $controller = new GardenController($res);
             $controller->deletePlant($id);
         }
-    case 'updateForm':
+    case 'updateForm':  
         if (isset($params[1])){
             $id = $params[1];
-            $controller = new GardenController();
+            $controller = new GardenController($res);
             $controller->showUpdateForm($id);
         }
         break;
     case 'updatePlant':
-        $controller = new GardenController();
+        sessionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        $controller = new GardenController($res);
         $controller->updatePlant();
         break;
+    case 'showLogin':
+        $controller = new AuthController();
+        $controller->showLogin();
+        break;
+    case 'login':
+        $controller = new AuthController();
+        $controller->login();
+        break;
+    case 'logout':
+        $controller = new AuthController();
+        $controller->logout();
     case 'error':
         echo 'La pagina no se ve';
         break;  
