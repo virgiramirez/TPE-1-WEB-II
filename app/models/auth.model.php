@@ -8,7 +8,7 @@ class UserModel extends Model{
         $tables = $query->fetchAll();
 
         if(count($tables) == 0) {
-            $usuarios = [
+            $users = [
                 ['user' => 'webadmin', 'password' => 'admin']
             ];
             $sql = <<<SQL
@@ -23,10 +23,10 @@ class UserModel extends Model{
         $insertSql = "INSERT INTO usuario ( user, password) values (?,?)";
         $statement = $this->db->prepare($insertSql);
         
-        foreach ($usuarios as $usuario) {
+        foreach ($users as $user) {
             $statement->execute([
-                $usuario['user'],
-                password_hash($usuario['password'], PASSWORD_DEFAULT)
+                $user['user'],
+                password_hash($user['password'], PASSWORD_DEFAULT)
             ]);
         
         }

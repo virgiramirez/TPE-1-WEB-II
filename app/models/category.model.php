@@ -7,8 +7,7 @@
             $tables = $query->fetchAll();
 
             if(count($tables) == 0) {
-                echo 'creando tabla';
-                $pedidos = [
+                $orders = [
                     ['fecha_pedido' => '2024-10-17', 'estado' => 'pendiente', 'total' => 100.50],
                     ['fecha_pedido' => '2024-10-17', 'estado' => 'completado', 'total' => 150.75]
                 ];
@@ -27,11 +26,11 @@
             
                 $statement = $this->db->prepare($insertSql);
             
-                foreach ($pedidos as $pedido){
+                foreach ($orders as $order){
                     $statement->execute([
-                        $pedido['fecha_pedido'],
-                        $pedido['estado'],
-                        $pedido['total']
+                        $order['fecha_pedido'],
+                        $order['estado'],
+                        $order['total']
                     ]);
                 }
         
@@ -40,11 +39,11 @@
     
 
         public function getCategories() {
-            // 2. Ejecuto la consulta
+            //Ejecuto la consulta
             $query = $this->db->prepare('SELECT * FROM pedidos');
             $query->execute();
         
-            // 3. Obtengo los datos en un arreglo de objetos
+            //Obtengo los datos en un arreglo de objetos
             $categories = $query->fetchAll(PDO::FETCH_OBJ); 
         
             return $categories;
@@ -64,9 +63,9 @@
             return $items;
         }
 
-        public function insertCategories($fecha_pedido, $estado, $total) {
+        public function insertCategories($order_date, $status, $total) {
             $query = $this->db->prepare('INSERT INTO pedidos (fecha_pedido, estado, total) VALUES (?, ?, ?)');
-            $query->execute([$fecha_pedido, $estado, $total]);
+            $query->execute([$order_date, $status, $total]);
 
             $id = $this->db->lastInsertId();
 
@@ -77,9 +76,9 @@
             $query = $this->db->prepare('DELETE FROM pedidos  WHERE id_pedido = ?');
             $query->execute([$id]);
         }
-        public function editCategory($id, $fecha_pedido, $estado, $total){
+        public function editCategory($id, $order_date, $status, $total){
             $query = $this->db->prepare('UPDATE pedidos SET fecha_pedido = ?, estado = ?, total = ? WHERE id_pedido = ?');
-            $query->execute([$fecha_pedido, $estado, $total, $id]);
+            $query->execute([$order_date, $status, $total, $id]);
         }
         
     }

@@ -15,7 +15,6 @@ require_once './app/views/category.view.php';
         }
         public function showCategories() {
             $categories = $this->model->getCategories();
-            // var_dump($categories);
             return $this->view->showCategories($categories);
         }       
         public function showItemsByCategory($idPedido){
@@ -33,12 +32,12 @@ require_once './app/views/category.view.php';
                 return $this->view->showError('Falta ingresar la fecha del pedido');
             }
             
-            $fecha_pedido = $_POST['fecha_pedido'];
-            $estado = $_POST['estado'];
+            $order_date = $_POST['fecha_pedido'];
+            $status = $_POST['estado'];
             $total = $_POST['total'];
-            $id = $this->model->insertCategories($fecha_pedido, $estado, $total);
+            $id = $this->model->insertCategories($order_date, $status, $total);
         
-            // redirijo al home (también podriamos usar un método de una vista para motrar un mensaje de éxito)
+            // redirijo al home
             header('Location: ' . BASE_URL);
 
         }
@@ -65,7 +64,7 @@ require_once './app/views/category.view.php';
             
         }
         public function updateCategory(){
-            // var_dump($_POST);
+            
             if(!isset($_POST['fecha_pedido']) || empty($_POST['fecha_pedido'])){
                 return $this->view->showError('Falta ingresar la fecha del pedido');
             }
@@ -75,11 +74,11 @@ require_once './app/views/category.view.php';
             if(!isset($_POST['total']) || empty($_POST['total'])){
                 return $this->view->showError('Falta ingresar el total');
             }
-            $id_pedido = $_POST["id_pedido"];
-            $fecha_pedido = $_POST["fecha_pedido"];
-            $estado = $_POST['estado'];
+            $order_id = $_POST["id_pedido"];
+            $order_date = $_POST["fecha_pedido"];
+            $status = $_POST['estado'];
             $total = $_POST['total'];
-            $id_pedido = $this->model->editCategory($id_pedido, $fecha_pedido, $estado, $total);
+            $order_id = $this->model->editCategory($order_id, $order_date, $status, $total);
             header('Location: ' . BASE_URL);
             
         }
