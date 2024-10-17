@@ -1,7 +1,12 @@
 <?php
+require_once 'libs/response.php';
+require_once 'app/middlewares/session.auth.middlewares.php';
+require_once 'app/middlewares/verify.auth.middlewares.php';
+
 require_once './app/controllers/category.controller.php';
 require_once './app/views/category.view.php';
 require_once './app/models/category.model.php';
+require_once 'app/controllers/auth.controller.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -62,6 +67,18 @@ switch($params[0]){
             $controller->showUpdateCategory($params[1]);
         }
         break;
+    case 'showLogin':
+        $controller = new AuthController();
+        $controller->showLogin();
+        break;
+    case 'login':
+        $controller = new AuthController();
+        $controller->login();
+        break;
+    case 'logout':
+            $controller = new AuthController();
+            $controller->logout();
+            break;
         default: 
             echo "404 Page Not Found";
             break;

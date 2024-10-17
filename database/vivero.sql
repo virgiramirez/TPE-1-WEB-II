@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-10-2024 a las 19:15:57
+-- Tiempo de generación: 17-10-2024 a las 06:18:59
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -39,8 +39,8 @@ CREATE TABLE `pedidos` (
 --
 
 INSERT INTO `pedidos` (`id_pedido`, `fecha_pedido`, `estado`, `total`) VALUES
-(1, '2024-09-18', 'pedido', 16000),
-(2, '2024-08-25', 'finalizado', 20000);
+(19, '2024-10-11', 'No entregado', 10000),
+(20, '2020-10-20', 'Entregado', 6000);
 
 -- --------------------------------------------------------
 
@@ -61,10 +61,8 @@ CREATE TABLE `planta` (
 --
 
 INSERT INTO `planta` (`id_planta`, `nombre`, `precio`, `id_pedido`, `stock`) VALUES
-(13, 'calathea', 16000, 1, 10),
-(14, 'albahaca ', 20000, 2, 50),
-(15, 'cactus', 3500, 1, 6),
-(16, 'margarita', 4500, 2, 12);
+(37, 'Albahaca', 5000, 20, 4),
+(38, 'Menta', 2000, 19, 5);
 
 -- --------------------------------------------------------
 
@@ -109,7 +107,7 @@ ALTER TABLE `planta`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`user`);
+  ADD UNIQUE KEY `user` (`user`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -119,13 +117,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `planta`
 --
 ALTER TABLE `planta`
-  MODIFY `id_planta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_planta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`

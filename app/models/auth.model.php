@@ -1,0 +1,47 @@
+<?php
+require_once 'model.php';
+require_once 'config.php';
+class UserModel extends Model{
+
+    public function _deploy() {
+        $query = $this->db->query('SHOW TABLES LIKE pedidos');
+        $tables = $query->fetchAll();
+
+        if(count($tables) == 0) {
+            $usuarios = [
+                ['user' => 'webadmin', 'password' => 'admin']
+            ];
+            $sql = <<<SQL
+                        CREATE TABLE `usuario` (
+                        `id` int(11) NOT NULL,
+                        `user` varchar(50) NOT NULL,
+                        `password` varchar(100) NOT NULL
+                        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+            SQL;
+        $this->db->query($sql);
+        $insertSql = "INSERT INTO usuario ( user, password) values (?,?)";
+        $statement = $this->db->prepare($insertSql);
+        
+        foreach ($usuarios as $usuario) {
+            $statement->execute([
+                $usuario['user'],
+                password_hash($usuario['password'], PASSWORD_DEFAULT)
+            ]);
+        
+        }
+    }
+}
+
+   
+ 
+    public function getUser($user) {    
+        $query = $this->db->prepare("SELECT * FROM usuario WHERE user = ?");
+        $query->execute([$user]);
+    
+        $user = $query->fetch(PDO::FETCH_OBJ);
+    
+        return $user;
+    }
+
+}
