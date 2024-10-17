@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Planta</title>
-</head>
-<body>
-    <form action="<?= BASE_URL ?>updatePlant" method="POST">
+<?php require_once './templates/layout/header.phtml' ?>
+
+    <form action="<?= BASE_URL ?>update" method="POST">
         <input type="hidden" name="id_planta" value="<?= $plant->id_planta ?>">
 
         <label for="nombre">Nombre de la planta:</label>
@@ -20,12 +14,12 @@
 
         <label for="id_pedido">Pedido al que pertenece:</label>
         <select id="id_pedido" name="id_pedido">
-            <?php foreach ($pedidos as $pedido): ?>
-                <option value="<?= $pedido->id_pedido; ?>"><?= $pedido->estado; ?></option>
-            <?php endforeach; ?>
+        <?php foreach ($orders as $order): ?>
+            <option value="<?= $order->id_pedido; ?>"><?= $order->estado; ?></option>
+        <?php endforeach; ?>
         </select>
         <button type="submit">Editar Planta</button>
     </form>
-    <a href="<?php echo BASE_URL; ?>plants">Volver a la lista de plantas</a>
-</body>
-</html>
+    <a href="<?= BASE_URL; ?>home" class="btn btn-success mt-4">Volver a la lista de plantas</a>
+    
+<?php require_once './templates/layout/footer.phtml'?>

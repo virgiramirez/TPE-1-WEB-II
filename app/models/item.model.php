@@ -14,11 +14,11 @@
         }
         
         public function getPlants() {
-            // 2. Ejecuto la consulta
+            // Ejecuto la consulta
             $query = $this->db->prepare('SELECT * FROM planta');
             $query->execute();
         
-            // 3. Obtengo los datos en un arreglo de objetos
+            // Obtengo los datos en un arreglo de objetos
             $plants = $query->fetchAll(PDO::FETCH_OBJ); 
         
             return $plants;
@@ -33,22 +33,30 @@
             return $plant;
         }
 
-        public function insertPlant($nombre, $precio, $id_pedido, $stock) { 
+        public function insertPlant($name, $price, $id, $stock) { 
             $query = $this->db->prepare('INSERT INTO planta (nombre, precio, id_pedido, stock) VALUES (?, ?, ?, ?)');
-            $query->execute([$nombre, $precio, $id_pedido, $stock]);
-        
-            $id = $this->db->lastInsertId();
+            $query->execute([$name, $price, $id, $stock]);
         
             return $id;
         }
 
-        public function getOrders($id) {
-            $query = $this->db->prepare('SELECT * FROM pedidos WHERE id_pedido = ?');
-            $query->execute([$id]);
-            
-            $pedidos = $query->fetch(PDO::FETCH_OBJ);
-            
-            return $pedidos;
+        public function updatePlantImage($id, $image_path) {
+            $query = $this->db->prepare('UPDATE planta SET imagen = ? WHERE id_planta = ?');
+            $query->execute([$image_path, $id]);
+        }
+
+        public function getOrders($id = null) {
+            if ($id){
+                $query = $this->db->prepare('SELECT * FROM pedidos WHERE id_pedido = ?');
+                $query->execute([$id]);
+                $orders = $query->fetch(PDO::FETCH_OBJ);
+                return $orders;
+            } else {
+                $query = $this->db->prepare('SELECT * FROM pedidos');
+                $query->execute();
+                $orders = $query->fetchAll(PDO::FETCH_OBJ);
+                return $orders;
+            }  
         }
 
         public function deletePlant($id) {
@@ -56,8 +64,8 @@
             $query->execute([$id]);
         }
 
-        public function editPlant($id, $nombre, $precio, $id_pedido, $stock) {
+        public function editPlant($id, $name, $price, $order_id, $stock) {
             $query = $this->db->prepare('UPDATE planta SET nombre = ?, precio = ?, id_pedido = ?, stock = ? WHERE id_planta = ?');
-            $query->execute([$nombre, $precio, $id_pedido, $stock, $id]);
+            $query->execute([$name, $price, $order_id, $stock, $id]);
         }
     }   

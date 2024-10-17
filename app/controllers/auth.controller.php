@@ -38,16 +38,10 @@
                 $_SESSION['user'] = $userFromDB->user;
                 $_SESSION['password'] = $userFromDB->password;
                 
-                header('Location: '. BASE_URL  . 'plants');
+                header('Location: '. BASE_URL  . 'home');
             }
             else {
                 return $this->view->showLogin("Credenciales incorrectas");
             }
-        }
-
-        public function logout() {
-            session_start(); // Va a buscar la cookie
-            session_destroy(); // Borra la cookie que se buscó
-            header('Location: ' . BASE_URL);
         }
     }

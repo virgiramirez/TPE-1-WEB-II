@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plantas</title>
-</head>
-<body>
-    <h1>Detalles de la Planta</h1>
-    <h2><?=$plant->nombre ?></h2>
-    <p>Precio: <?= $plant->precio ?></p>
-    <p>Stock: <?= $plant->stock ?>
-    <p>Pedido: <?= $pedido->estado?></p>  
+<?php require_once './templates/layout/header.phtml' ?>
 
-    <a href="<?php echo BASE_URL; ?>plants">Volver a la lista de plantas</a> <!-- Un enlace para volver a la lista -->
-</body>
-</html>
+    <h1>Detalles de la Planta</h1>
+    <img src="<?= $plant->imagen; ?>"alt="Imagen de <?= $plant->nombre; ?>" style="max-width: 300px;">
+   
+    <h2><?= $plant->nombre ?></h2>
+    <p>Precio: <?= $plant->precio ?></p>
+    <p>Stock: <?= $plant->stock ?></p>
+    <p>Pedido: <?= $order->estado?></p>  
+
+    <a href="<?= BASE_URL; ?>home" class="btn btn-success mt-4">Volver a la lista de plantas</a> <!-- Un enlace para volver a la lista -->
+    
+    <?php require_once './templates/layout/footer.phtml' ?>
+

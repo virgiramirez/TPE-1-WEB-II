@@ -1,3 +1,4 @@
-.select{
-    width: 300px;
+.img-custom {
+    height: 200px; /* Ajusta la altura según tus necesidades */
+    object-fit: cover; /* Escala la imagen para que cubra el contenedor */
 }
