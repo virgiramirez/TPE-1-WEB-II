@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2024 a las 06:18:59
+-- Tiempo de generación: 17-10-2024 a las 19:46:58
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -73,7 +73,7 @@ INSERT INTO `planta` (`id_planta`, `nombre`, `precio`, `id_pedido`, `stock`) VAL
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
   `user` varchar(50) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` char(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -81,7 +81,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `user`, `password`) VALUES
-(1, 'webadmin', 'admin');
+(1, 'webadmin', '$2y$10$NQZfO1Or8y0zi7OS5wwdJ.ub013WqM1bm64wmjZfshGwAfDbtK/5m');
 
 --
 -- Índices para tablas volcadas
@@ -117,7 +117,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `planta`

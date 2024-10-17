@@ -10,7 +10,9 @@ require_once 'app/controllers/auth.controller.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
-$action = 'list'; // accion por defecto
+$res = new Response();
+
+$action = 'home'; // accion por defecto
 if (!empty($_GET['action'])){
     $action = $_GET['action'];
 }
@@ -39,42 +41,45 @@ if (!empty($_GET['action'])){
 
 $params = explode('/', $action);
 switch($params[0]){
+    case 'home':
+        $controller = new CategoryController($res);
+        $controller->showHome();
+        break;
     case 'list':
-        $controller = new CategoryController;
+        sessionAuthMiddleware($res);
+        $controller = new CategoryController($res);
         $controller->showCategories();
         break;
     case 'category':
+        sessionAuthMiddleware($res);
         if(isset($params[1])) {
-            $controller = new CategoryController;
+            $controller = new CategoryController($res);
             $controller->showItemsByCategory($params[1]);
         }
         break;
     case 'addCategories':
-        $controller = new CategoryController;
+        sessionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        $controller = new CategoryController($res);
         $controller->addcategories();
         break;
     case 'deleteCategory':
-        $controller = new CategoryController;
+        sessionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        $controller = new CategoryController($res);
         $controller->deleteCategory($params[1]);
         break;
     case 'updateCategory':
-            $controller = new CategoryController;
+            $controller = new CategoryController($res);
             $controller->updateCategory();
         break;
     case 'showUpdateCategory': 
         if(isset($params[1])){
-            $controller = new CategoryController;
+            $controller = new CategoryController($res);
             $controller->showUpdateCategory($params[1]);
         }
         break;
-    case 'showLogin':
-        $controller = new AuthController();
-        $controller->showLogin();
-        break;
-    case 'login':
-        $controller = new AuthController();
-        $controller->login();
-        break;
+   
     case 'logout':
             $controller = new AuthController();
             $controller->logout();

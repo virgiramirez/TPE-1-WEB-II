@@ -5,7 +5,8 @@
 <?php else: ?>
     <ul>
         <?php foreach ($items as $item): ?>
-            <li><?php echo $item->nombre; ?> - Precio: <?php echo $item->precio; ?> - Stock: <?php echo $item->stock; ?></li>
+            <li><?= $item->nombre; ?> - Precio: <?= $item->precio; ?> - Stock: <?= $item->stock; ?></li>
         <?php endforeach; ?>
     </ul>
 <?php endif; ?>
+<?php require_once 'templates/layout/footer.phtml';

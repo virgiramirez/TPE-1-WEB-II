@@ -2,8 +2,6 @@
     require_once 'model.php';
     require_once 'config.php';
     class CategoryModel extends Model {
-       
-
         public function _deploy() {
             $query = $this->db->query('SHOW TABLES LIKE \'pedidos\'');
             $tables = $query->fetchAll();
@@ -55,7 +53,6 @@
             $query = $this->db->prepare('SELECT * FROM pedidos WHERE id_pedido = ?');
             $query->execute([$id]);
             $category = $query->fetch(PDO::FETCH_OBJ); 
-            var_dump($category);
             return $category;
         }
         public function getItemsByCategory($id) {
@@ -77,10 +74,6 @@
         }
 
         public function eraseCategory($id) {
-           if($this->getItemsByCategory($id) != null) {
-                $queryPlant = $this->db->prepare('DELETE FROM planta  WHERE id_pedido = ?');
-                $queryPlant->execute([$id]);
-           }
             $query = $this->db->prepare('DELETE FROM pedidos  WHERE id_pedido = ?');
             $query->execute([$id]);
         }

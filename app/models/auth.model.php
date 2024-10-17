@@ -4,7 +4,7 @@ require_once 'config.php';
 class UserModel extends Model{
 
     public function _deploy() {
-        $query = $this->db->query('SHOW TABLES LIKE pedidos');
+        $query = $this->db->query('SHOW TABLES LIKE \'usuario\'');
         $tables = $query->fetchAll();
 
         if(count($tables) == 0) {

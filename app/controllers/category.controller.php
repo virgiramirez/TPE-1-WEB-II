@@ -6,11 +6,13 @@ require_once './app/views/category.view.php';
         private $model; 
         private $view;
 
-        public function __construct(){
+        public function __construct($res){
             $this->model = new CategoryModel();
-            $this->view = new CategoryView();
+            $this->view = new CategoryView($res->user);
         }
-        
+        public function showHome() {
+            return $this->view->showHome();
+        }
         public function showCategories() {
             $categories = $this->model->getCategories();
             // var_dump($categories);
@@ -42,11 +44,11 @@ require_once './app/views/category.view.php';
         }
 
         public function deleteCategory($id){
-            //obtengo la categoria por id
-            // $category = $this->model->getItemsByCategory($id);
-            // if(!$category) {
-            //     return  $this->view->showError("No existe la categoria con el id=$id");
-            // } 
+            //obtengo la categoria por id y verifico que no tenga ningun items vinculado para eliminarlo
+            
+            if($this->model->getItemsByCategory($id) != null) {
+                return  $this->view->showError("No se puede eliminar la categoria con el id=$id porque tiene items cargados");
+           }
             $this->model->eraseCategory($id);
             
             header('Location: ' . BASE_URL);

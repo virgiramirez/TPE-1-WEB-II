@@ -1,8 +1,18 @@
 <?php
+
     class CategoryView {
+        private $usuario = null;
+
+        public function __construct($usuario) {
+            $this->usuario = $usuario;
+        }
+
+        public function showHome(){
+            require 'templates/home.phtml';
+        }
         public function showCategories($categories){
 
-            require './templates/header.phtml';
+            require 'templates/list.category.phtml';
         }
 
         public function renderItemsByCategory($items) {
