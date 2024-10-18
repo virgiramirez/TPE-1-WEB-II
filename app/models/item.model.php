@@ -32,9 +32,9 @@
             
                 foreach ($plants as $plant){
                     $statement->execute([
-                        $plant['fecha_pedido'],
-                        $plant['estado'],
-                        $plant['total']
+                        $plant['nombre'],
+                        $plant['precio'],
+                        $plant['stock']
                     ]);
                 }
         
