@@ -22,7 +22,7 @@
             <th scope="col"><?= $category->total; ?></th>
             
             <?php if(isset($_SESSION['id'])): ?>
-                <th scope="col"><a href="deleteCategory/<?= $category->id_pedido ?>" type="button" class='btn btn-danger btn-sm ml-auto'>Borrar</a></th>
+                <th scope="col"><a href="<?= BASE_URL ."deleteCategory/" . $category->id_pedido ?>" type="button" class='btn btn-danger btn-sm ml-auto'>Borrar</a></th>
                 <th scope="col"><a href="showUpdateCategory/<?= $category->id_pedido ?>" type="button" class='btn btn-danger btn-sm ml-auto'>Editar</a></th>
             <?php endif;?>
             <th>

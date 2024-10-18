@@ -7,6 +7,7 @@
             $tables = $query->fetchAll();
 
             if(count($tables) == 0) {
+                
                 $orders = [
                     ['fecha_pedido' => '2024-10-17', 'estado' => 'pendiente', 'total' => 100],
                     ['fecha_pedido' => '2024-10-17', 'estado' => 'completado', 'total' => 150]

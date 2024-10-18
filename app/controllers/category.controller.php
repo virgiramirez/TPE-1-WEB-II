@@ -29,7 +29,7 @@ require_once './app/views/category.view.php';
                 return $this->view->showError('Falta ingresar la fecha del pedido');
             }
             if(!isset($_POST['estado']) || empty($_POST['estado'])){
-                return $this->view->showError('Falta ingresar la fecha del pedido');
+                return $this->view->showError('Falta ingresar el estado del pedido');
             }
             
             $order_date = $_POST['fecha_pedido'];
@@ -46,11 +46,11 @@ require_once './app/views/category.view.php';
             //obtengo la categoria por id y verifico que no tenga ningun items vinculado para eliminarlo
             
             if($this->model->getItemsByCategory($id) != null) {
-                return  $this->view->showError("No se puede eliminar la categoria con el id=$id porque tiene items cargados");
+                return  $this->view->showError("No se puede eliminar el pedido porque tiene plantas cargadas");
            }
             $this->model->eraseCategory($id);
             
-            header('Location: ' . BASE_URL);
+            header('Location: ' . BASE_URL . '/list');
         }
         
         public function showUpdateCategory($id) {
@@ -58,7 +58,7 @@ require_once './app/views/category.view.php';
             $category = $this->model->getCategory($id);
            
             if(!$category) {
-                return  $this->view->showError("No existe la categoria con el id=$id");
+                return  $this->view->showError("No existe el pedido con el id=$id");
             }
             return $this->view->renderCategory($category, $items);
             
@@ -69,7 +69,7 @@ require_once './app/views/category.view.php';
                 return $this->view->showError('Falta ingresar la fecha del pedido');
             }
             if(!isset($_POST['estado']) || empty($_POST['estado'])){
-                return $this->view->showError('Falta ingresar la fecha del pedido');
+                return $this->view->showError('Falta ingresar el estado del pedido');
             }
             if(!isset($_POST['total']) || empty($_POST['total'])){
                 return $this->view->showError('Falta ingresar el total');

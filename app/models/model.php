@@ -1,5 +1,5 @@
 <?php
-    abstract class Model {
+abstract class Model {
         protected $db;
 
         //constructor
@@ -14,5 +14,6 @@
 
             $this->_deploy();
         }
-        abstract protected function _deploy();
-    }
+    abstract protected function _deploy();
+
+}
