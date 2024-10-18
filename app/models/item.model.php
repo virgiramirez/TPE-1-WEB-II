@@ -15,7 +15,7 @@
                 ];
                 $sql = <<<SQL
                                 CREATE TABLE `planta` (
-                            `id_planta` int(11) NOT NULL,
+                            `id_planta` int(11) NOT NULL AUTO_INCREMENT,
                             `nombre` varchar(20) NOT NULL,
                             `precio` int(11) NOT NULL,
                             `id_pedido` int(11) NOT NULL,
@@ -65,7 +65,7 @@
             $query = $this->db->prepare('INSERT INTO planta (nombre, precio, id_pedido, stock) VALUES (?, ?, ?, ?)');
             $query->execute([$name, $price, $id, $stock]);
         
-            return $id;
+            return $this->db->lastInsertId();
         }
 
         public function updatePlantImage($id, $image_path) {

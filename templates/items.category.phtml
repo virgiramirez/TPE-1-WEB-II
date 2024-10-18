@@ -1,8 +1,8 @@
 <?php require_once './templates/layout/header.phtml';?>
-<h1 class="text-center">Plantas en la Categoría</h1>
+<h1 class="text-center">Plantas del Pedido</h1>
 
 <?php if (empty($items)): ?>
-    <p class="text-center">No hay ítems disponibles en esta categoría.</p>
+    <p class="text-center">No hay plantas disponibles en este pedido.</p>
 <?php else: ?>
     <ul class="text-center">
         <?php foreach ($items as $item): ?>

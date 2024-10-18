@@ -6,7 +6,7 @@
         <?php foreach ($plants as $plant): ?>
             <div class="col-md-4 mb-4"> <!-- Cada card ocupará 4 columnas en pantallas medianas y grandes -->
                 <div class="card">
-                    <img src="<?= $plant->imagen; ?>" class="card-img-top img-fluid img-custom"  alt="Imagen de <?= $plant->nombre; ?>">
+                    <img src="<?php echo htmlspecialchars(($plant->imagen)); ?>" class="card-img-top img-fluid img-custom"  alt="Imagen de <?= $plant->nombre; ?>">
                     <div class="card-body">
                         <h5 class="card-title"><?= $plant->nombre; ?></h5>
                         <?php if (isset($_SESSION['id'])): ?> <!-- Verifica si el usuario está logueado -->
