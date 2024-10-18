@@ -8,12 +8,12 @@
 
             if(count($tables) == 0) {
                 $orders = [
-                    ['fecha_pedido' => '2024-10-17', 'estado' => 'pendiente', 'total' => 100.50],
-                    ['fecha_pedido' => '2024-10-17', 'estado' => 'completado', 'total' => 150.75]
+                    ['fecha_pedido' => '2024-10-17', 'estado' => 'pendiente', 'total' => 100],
+                    ['fecha_pedido' => '2024-10-17', 'estado' => 'completado', 'total' => 150]
                 ];
                 $sql = <<<SQL
                                 CREATE TABLE `pedidos` (
-                    `id_pedido` int(11) NOT NULL,
+                    `id_pedido` int(11) NOT NULL AUTO_INCREMENT,
                     `fecha_pedido` date NOT NULL,
                     `estado` varchar(20) NOT NULL,
                     `total` int(11) NOT NULL

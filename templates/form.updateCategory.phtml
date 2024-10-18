@@ -1,11 +1,10 @@
-<?= require_once './templates/layout/header.phtml';?>
+<?php require_once './templates/layout/header.phtml';?>
 
 <!-- formulario de edicion de categorias -->
 <form action="<?=BASE_URL?>updateCategory" method="POST" class="my-4">
     <div class="row">
     <div class="col-9">
             <div class="form-group">
-                <label>ID</label>
                 <input  required name="id_pedido" value="<?=$category->id_pedido ?>" type="hidden" class="form-control">
             </div>
         </div>
@@ -32,4 +31,5 @@
     <button type="submit" class='btn btn-warning btn-sm'>Editar </button>
     
 </form>
+<a href="<?= BASE_URL; ?>list" class="btn btn-success mt-4">Volver a la lista de plantas</a>
 <?php require_once 'templates/layout/footer.phtml';

@@ -37,8 +37,8 @@ require_once './app/views/category.view.php';
             $total = $_POST['total'];
             $id = $this->model->insertCategories($order_date, $status, $total);
         
-            // redirijo al home
-            header('Location: ' . BASE_URL);
+            // Redirijo para que se actualice la accion
+            header('Location: ' . 'list');
 
         }
 
@@ -79,7 +79,7 @@ require_once './app/views/category.view.php';
             $status = $_POST['estado'];
             $total = $_POST['total'];
             $order_id = $this->model->editCategory($order_id, $order_date, $status, $total);
-            header('Location: ' . BASE_URL);
+            header('Location: ' . 'list');
             
         }
     }   

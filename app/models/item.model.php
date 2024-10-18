@@ -1,16 +1,44 @@
 <?php
-    require_once './app/models/config.php';
+    require_once 'model.php';
+    require_once 'config.php';
     
-    class GardenModel {
+    class GardenModel extends Model {
 
-        protected $db;
+        public function _deploy() {
+            $query = $this->db->query('SHOW TABLES LIKE \'planta\'');
+            $tables = $query->fetchAll();
 
-        public function __construct(){
-            $this->db = new PDO(
-            'mysql:host='.MYSQL_HOST.
-            ';dbname='.MYSQL_DB.
-            ';charset=utf8', 
-            MYSQL_USER, MYSQL_PASS);
+            if(count($tables) == 0) {
+                $plants = [
+                    ['nombre' => 'Calathea', 'precio' => 100, 'stock' => 2],
+                    ['nombre' => 'Menta', 'precio' => 50, 'stock' => 1]
+                ];
+                $sql = <<<SQL
+                                CREATE TABLE `planta` (
+                            `id_planta` int(11) NOT NULL,
+                            `nombre` varchar(20) NOT NULL,
+                            `precio` int(11) NOT NULL,
+                            `id_pedido` int(11) NOT NULL,
+                            `stock` int(11) NOT NULL,
+                            `imagen` varchar(150) NOT NULL
+                            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+                SQL;
+                $this->db->query($sql);
+
+                $insertSql = "INSERT INTO planta (nombre, precio, stock) VALUES (?,?,?)";
+            
+                $statement = $this->db->prepare($insertSql);
+            
+                foreach ($plants as $plant){
+                    $statement->execute([
+                        $plant['fecha_pedido'],
+                        $plant['estado'],
+                        $plant['total']
+                    ]);
+                }
+        
+            }
         }
         
         public function getPlants() {

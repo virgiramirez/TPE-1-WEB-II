@@ -1,27 +1,50 @@
 <?php require_once './templates/layout/header.phtml' ?>
 
-    <form action="add" method="POST" enctype="multipart/form-data">
-    <label for="nombre">Nombre de la planta:</label>
-    <input type="text" id="nombre" name="nombre" required>
-
-    <label for="precio">Precio:</label>
-    <input type="number" id="precio" name="precio" required>
-
-    <label for="stock">Stock:</label>
-    <input type="number" id="stock" name="stock" required>
-
-    <label for="id_pedido">Pedido al que pertenece:</label>
-    <select id="id_pedido" name="id_pedido">
-        <?php foreach ($orders as $order): ?>
-            <option value="<?= $order->id_pedido; ?>"><?= $order->estado; ?></option>
-        <?php endforeach; ?>
-    </select>
-    <!-- Input para subir la imagen -->
-    <label for="imagen">Imagen de la planta:</label>
-        <input type="file" id="imagen" name="imagen" required>
-    <button type="submit">Agregar Planta</button>
+<form action="add" method="POST" enctype="multipart/form-data" class="my-4">
+    <div class="row">
+    <div class="col-9">
+        <div class="form-group">
+            <label for="nombre">Nombre de la planta:</label>
+            <input class="form-control" type="text" id="nombre" name="nombre" required>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="form-group">
+            <label for="precio">Precio:</label>
+            <input class="form-control" type="number" id="precio" name="precio" required>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="form-group">
+            <label for="stock">Stock:</label>
+            <input class="form-control" type="number" id="stock" name="stock" required>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="form-group">
+        <label for="id_pedido">Pedido al que pertenece:</label>
+        <select id="id_pedido" name="id_pedido" class="form-select form-select-sm mb-3">
+            <?php foreach ($orders as $order): ?>
+                <option value="<?= $order->id_pedido; ?>"><?= $order->estado; ?></option>
+            <?php endforeach; ?>
+        </select>
+        </div>
+    </div>
+    <div class="col-9"> 
+        <div class="form-group">
+        <!-- Input para subir la imagen -->
+            <label for="imagen">Imagen de la planta:</label>
+            <input class="form-control" type="file" id="imagen" name="imagen" required>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="form-group">
+            <button class='btn btn-primary mt-2' type="submit">Agregar Planta</button>
+        </div>
+    </div>
+    </div>
 </form>
-<a href="<?= BASE_URL; ?>home" class="btn btn-success mt-4">Volver a la lista de plantas</a>
+<a href="<?= BASE_URL; ?>home" class="btn btn-secondary mt-4">Volver a la lista de plantas</a>
 
 <?php require_once './templates/layout/footer.phtml'?>
 

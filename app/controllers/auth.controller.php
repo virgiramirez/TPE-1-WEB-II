@@ -1,5 +1,5 @@
 <?php
-    require_once './app/models/user.model.php';
+    require_once './app/models/auth.model.php';
     require_once './app/views/auth.view.php';
 
     class AuthController {
