@@ -73,7 +73,7 @@
 
                 // Actualizar la planta con la ruta de la imagen
                 $this->model->updatePlantImage($id, $image_file);
-
+                
                 // redirijo al home
                 header('Location: '. BASE_URL  . 'home');
             }

@@ -1,0 +1,14 @@
+<?php require_once './templates/layout/header.phtml';?>
+<h1 class="text-center">Plantas en la Categoría</h1>
+
+<?php if (empty($items)): ?>
+    <p class="text-center">No hay ítems disponibles en esta categoría.</p>
+<?php else: ?>
+    <ul class="text-center">
+        <?php foreach ($items as $item): ?>
+            <li><?= $item->nombre; ?> - Precio: <?= $item->precio; ?> - Stock: <?= $item->stock; ?></li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
+<a href="<?= BASE_URL; ?>home" class="btn btn-success mt-4">Volver a la lista de plantas</a>
+<?php require_once 'templates/layout/footer.phtml';

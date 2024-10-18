@@ -1,0 +1,42 @@
+<?php require_once './templates/layout/header.phtml';?>
+<table class="table">
+  <thead class="table-light">
+    <tr>
+        <th scope="col">#Orden</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Estado del pedido</th>
+        <th scope="col">Total</th>
+        <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach($categories as $category): ?>
+    <tr>   
+            <th scope="col">
+                        <?= $category->id_pedido;?>
+            </th>              
+            <th scope="col"><?= $category->fecha_pedido; ?></th>
+              
+            <th scope="col"><?= $category->estado; ?></th>
+            
+            <th scope="col"><?= $category->total; ?></th>
+            
+            <?php if(isset($_SESSION['id'])): ?>
+                <th scope="col"><a href="deleteCategory/<?= $category->id_pedido ?>" type="button" class='btn btn-danger btn-sm ml-auto'>Borrar</a></th>
+                <th scope="col"><a href="showUpdateCategory/<?= $category->id_pedido ?>" type="button" class='btn btn-danger btn-sm ml-auto'>Editar</a></th>
+            <?php endif;?>
+            <th>
+            <a href="category/<?= $category->id_pedido;?>">Detalle</a>
+            </th>
+        
+    <?php endforeach; ?>
+    </tr>
+  </tbody>
+</table>
+
+
+<?php if(isset($_SESSION['id'])): 
+        require 'templates/form.category.phtml';
+        
+     endif;  ?>
+<?php require_once 'templates/layout/footer.phtml';

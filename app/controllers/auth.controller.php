@@ -1,5 +1,5 @@
 <?php
-    require_once './app/models/user.model.php';
+    require_once './app/models/auth.model.php';
     require_once './app/views/auth.view.php';
 
     class AuthController {
@@ -44,4 +44,9 @@
                 return $this->view->showLogin("Credenciales incorrectas");
             }
         }
+        public function logout() {
+            session_start(); // Va a buscar la cookie
+            session_destroy(); // Borra la cookie que se buscó
+            header('Location: ' . BASE_URL);
+       }
     }
