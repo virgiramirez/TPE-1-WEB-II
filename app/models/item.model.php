@@ -20,7 +20,8 @@
                             `precio` int(11) NOT NULL,
                             `id_pedido` int(11) NOT NULL,
                             `stock` int(11) NOT NULL,
-                            `imagen` varchar(150) NOT NULL
+                            `imagen` varchar(150) NOT NULL,
+                            PRIMARY KEY (`id_planta`)
                             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
                 SQL;

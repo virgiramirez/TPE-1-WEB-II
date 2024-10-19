@@ -17,7 +17,8 @@
                     `id_pedido` int(11) NOT NULL AUTO_INCREMENT,
                     `fecha_pedido` date NOT NULL,
                     `estado` varchar(20) NOT NULL,
-                    `total` int(11) NOT NULL
+                    `total` int(11) NOT NULL,
+                    PRIMARY KEY (`id_pedido`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
                 SQL;
