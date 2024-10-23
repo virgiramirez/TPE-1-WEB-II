@@ -3,12 +3,12 @@
     require_once './app/views/item.view.php';
 
     class GardenController {
-        private $model;
+        public $model;
         private $view;
 
         public function __construct() {
-        $this->model = new GardenModel();
-        $this->view = new GardenView();
+            $this->model = new GardenModel();
+            $this->view = new GardenView();
         }
 
         public function showPlants(){
@@ -57,7 +57,7 @@
             $order = $_POST['id_pedido'];
             $stock = $_POST['stock'];
 
-            $id = $this->model->insertPlant($name, $price, $order, $stock);
+            $id_planta = $this->model->insertPlant($name, $price, $order, $stock);
             
             $image = $_FILES['imagen'];
 
@@ -66,13 +66,13 @@
                 $image_dir = "./uploads/images/";
 
                 $extension = pathinfo($image['name'], PATHINFO_EXTENSION); // Obtener la extensión original
-                $image_name = "planta_" . $id . "." . $extension; // Crear nombre basado en id_planta
+                $image_name = "planta_" . $id_planta . "." . $extension; // Crear nombre basado en id_planta
                 $image_file = $image_dir . $image_name;
 
                 move_uploaded_file($image['tmp_name'], $image_file);
 
                 // Actualizar la planta con la ruta de la imagen
-                $this->model->updatePlantImage($id, $image_file);
+                $this->model->updatePlantImage($id_planta, $image_file);
 
                 // redirijo al home
                 header('Location: '. BASE_URL  . 'home');

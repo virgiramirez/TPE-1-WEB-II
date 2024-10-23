@@ -37,7 +37,7 @@
             $query = $this->db->prepare('INSERT INTO planta (nombre, precio, id_pedido, stock) VALUES (?, ?, ?, ?)');
             $query->execute([$name, $price, $id, $stock]);
         
-            return $id;
+            return $this->db->lastInsertId();
         }
 
         public function updatePlantImage($id, $image_path) {
